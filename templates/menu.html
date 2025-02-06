@@ -1,0 +1,30 @@
+{% load static %}
+<div class="navbar">
+    <div class="logo">
+        <a href="{% url 'home' %}"><h1 style="color: #ff523b; font-size: 18px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        border: 1px solid black; padding: 8px;">SHOP<span style="color: black;">KART</span></h1></a>
+    </div>
+    <nav>
+        <ul id="MenuItems">
+            <li><a href="{% url 'home' %}" style="font-weight: bold;">Home</a></li>
+            <li><a href="{% url 'product_list' %}" style="font-weight: bold;">Products</a></li>
+            {% if not user.is_authenticated %}
+            <li><a href="{% url 'account' %}" style="font-weight: bold;">Account</a></li>
+            {% else %}
+            <li><a href="{% url 'orders' %}" style="font-weight: bold;">Orders</a></li>
+            <li><a href="{% url 'logout' %}" style="font-weight: bold;">Logout</a></li>
+            
+            {% endif %}
+        </ul>
+    </nav>
+    {% if user.is_authenticated %}
+    <a href="{% url 'cart' %}"><img src={% static "images/cart.png" %} width="30px" height="30px"></a>
+    <ul style="display: flex; margin-left: 40px; justify-content: center; align-items: center;">
+        <li><img src="{% static 'images/user2.png' %}" width="30px" height="30px" alt="user">  {{ user }}</li>
+    </ul>
+    {% endif %}
+    <img src="{% static 'images/menu.png' %}" class="menu-icon" onclick="menutoggle()">
+</div>
+
+
+<!-- <img src={% static "images/logo.png" %} alt="logo" width="125px"> -->
